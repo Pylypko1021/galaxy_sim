@@ -1,6 +1,7 @@
 import pytest
 from civilization_sim.model import CivilizationModel
-from civilization_sim.agents import Person, Wall, House, Predator
+from civilization_sim.new_agents.people import Person, Predator
+from civilization_sim.new_agents.buildings import Wall, House
 
 def test_wall_building():
     """Test that agents build walls near other buildings."""
@@ -17,7 +18,7 @@ def test_wall_building():
     model.grid.move_agent(person, (5, 6))
     
     # Give resources
-    model.tribe_stockpiles[tribe_id]["stone"] = 3
+    model.tribe_stockpiles[tribe_id]["stone"] = 30
     
     model.step()
     

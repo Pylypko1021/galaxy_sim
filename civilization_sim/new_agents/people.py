@@ -1,5 +1,6 @@
 from mesa import Agent
 import logging
+from ..pathfinding import a_star_search
 from .resources import Food, Tree, Stone, IronOre, Mountain
 from .buildings import House, Farm, Wall, Smithy, Market, Road, Barracks, Library, Hospital, Temple, Tavern
 
@@ -11,21 +12,46 @@ class Person(Agent):
         self.tribe_id = tribe_id
         self.profession = self.random.choice(["Farmer", "Miner", "Guard", "Blacksmith", "Merchant", "Soldier", "Archer", "Scholar", "Healer", "Priest"])
         self.infected = False # For Plague
+        
+        # Memory System
+        self.memory = {} # Mapping: ResourceType -> List of (x, y) coordinates
+        self.scanner_cooldown = 0
+        self.current_path = [] # List of (x, y) tuples for current movement path
+
+    def scan_environment(self):
+        if self.scanner_cooldown > 0:
+            self.scanner_cooldown -= 1
+            return
+
+        # Scan a larger area occasionally
+        scan_radius = 5
+        neighbors = self.model.grid.get_neighbors(self.pos, moore=True, include_center=True, radius=scan_radius)
+        
+        for agent in neighbors:
+            # We are interested in resources and buildings
+            if isinstance(agent, (Food, Tree, Stone, IronOre, House, Farm, Smithy, Market, Library, Hospital, Temple, Tavern)):
+                agent_type = type(agent)
+                if agent_type not in self.memory:
+                    self.memory[agent_type] = set()
+                self.memory[agent_type].add(agent.pos)
+        
+        self.scanner_cooldown = 10 # Scan every 10 steps
 
     def get_possible_actions(self, cell_mates):
         actions = []
         
         # Gather Actions
-        if self.tribe_id is not None:
-            for agent in cell_mates:
-                if isinstance(agent, Tree):
-                    actions.append({"type": "gather_wood", "target": agent})
-                elif isinstance(agent, Stone):
-                    actions.append({"type": "gather_stone", "target": agent})
-                elif isinstance(agent, IronOre):
-                    actions.append({"type": "gather_iron", "target": agent})
-                elif isinstance(agent, Food):
-                    actions.append({"type": "gather_food", "target": agent})
+        # Enable gathering for everyone (Loners need food too)
+        for agent in cell_mates:
+            if isinstance(agent, Tree) and self.tribe_id is not None:
+                actions.append({"type": "gather_wood", "target": agent})
+            elif isinstance(agent, Stone) and self.tribe_id is not None:
+                actions.append({"type": "gather_stone", "target": agent})
+            elif isinstance(agent, IronOre) and self.tribe_id is not None:
+                actions.append({"type": "gather_iron", "target": agent})
+            elif isinstance(agent, Food):
+                # Food is universal
+                actions.append({"type": "gather_food", "target": agent})
         
         # Work Actions
         if self.tribe_id is not None:
@@ -128,6 +154,10 @@ class Person(Agent):
                 # Boost if we have no science (need Library)
                 if stockpile.get("science", 0) == 0 and stockpile["wood"] >= 15 and stockpile["stone"] >= 15:
                     score += 20
+                
+                # High priority if food is critical (Need Farm)
+                if stockpile["food"] < 20 and stockpile["wood"] >= 2 and stockpile["stone"] >= 2:
+                    score += 50
 
             elif action_type == "attack_enemy":
                 target = action["target"]
@@ -152,6 +182,8 @@ class Person(Agent):
     def step(self):
         if self.pos is None:
             return
+        
+        self.scan_environment()
         
         self.age += 1
         self.energy -= 1  # Living costs energy
@@ -798,7 +830,7 @@ class Person(Agent):
         # Check for predators on current cell or nearby
         cell_mates = self.model.grid.get_cell_list_contents([self.pos])
         neighbors = self.model.grid.get_neighbors(
-            self.pos, moore=True, include_center=False, radius=2 # Reduced radius for performance
+            self.pos, moore=True, include_center=False, radius=2
         )
         all_others_around = [a for a in (cell_mates + neighbors) if a is not self]
         predators_near = [agent for agent in all_others_around if isinstance(agent, Predator)]
@@ -832,7 +864,7 @@ class Person(Agent):
             self.model.grid.move_agent(self, best_step)
             return
 
-        # --- New resource seeking logic ---
+        # --- Desired Target Selection ---
         target_type = None
 
         if self.tribe_id is not None:
@@ -876,34 +908,57 @@ class Person(Agent):
             if self.energy < 20:
                 target_type = Food
 
+        # --- Memory-Based Movement (Star Pathfinding) ---
         if target_type:
-            # Search for the target type in a wider radius
-            neighbors = self.model.grid.get_neighbors(
-                self.pos, moore=True, include_center=False, radius=2
-            )
-            targets_near = [agent for agent in neighbors if isinstance(agent, target_type)]
+            target_pos = None
             
-            if targets_near:
-                # Move towards the nearest target
-                target = min(targets_near, key=lambda a: self.get_distance(self.pos, a.pos))
-                possible_steps = self.model.grid.get_neighborhood(
-                    self.pos, moore=True, include_center=False
-                )
+            # 1. Check immediate surroundings first (updated via scan_environment usually, but good to be sure)
+            current_area_targets = [
+                a for a in self.model.grid.get_neighbors(self.pos, moore=True, include_center=True, radius=1)
+                if isinstance(a, target_type)
+            ]
+            if current_area_targets:
+                 target_pos = current_area_targets[0].pos
+            
+            # 2. Check Memory
+            elif target_type in self.memory and self.memory[target_type]:
+                # Find closest memory location
+                possible_locations = list(self.memory[target_type])
+                possible_locations.sort(key=lambda p: self.get_distance(self.pos, p))
                 
-                # Pathfinding: Minimize (Distance + Cost)
-                best_step = min(possible_steps, key=lambda p: self.get_distance(p, target.pos) + self.model.get_movement_cost(p))
-                self.model.grid.move_agent(self, best_step)
-                return
+                # Verify and cleanup memory if we are there and it's empty
+                valid_target_found = False
+                for loc in possible_locations:
+                    if loc == self.pos:
+                        # We are here but didn't find it in step 1 -> It's gone
+                        self.memory[target_type].remove(loc)
+                        continue
+                    else:
+                        target_pos = loc
+                        valid_target_found = True
+                        break
+                
+                if not valid_target_found:
+                    target_pos = None
 
-        # Random move if no target
+            # 3. Pathfind to target
+            if target_pos:
+                path = a_star_search(self.model, self.pos, target_pos)
+                if path and len(path) > 0:
+                    next_step = path[0]
+                    self.model.grid.move_agent(self, next_step)
+                    return
+                else:
+                     # Path blocked or unreachable, maybe remove from memory or Ignore
+                     pass
+
+        # Random move (exploration)
         possible_steps = self.model.grid.get_neighborhood(
             self.pos,
             moore=True,
             include_center=False
         )
         
-        # Weighted Random Walk based on terrain cost
-        # Inverse cost: 1/cost.
         weights = []
         valid_steps = []
         for step in possible_steps:

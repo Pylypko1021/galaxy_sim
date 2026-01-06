@@ -4,7 +4,8 @@ import os
 import logging
 import random
 from civilization_sim.model import CivilizationModel
-from civilization_sim.agents import Person, Barracks
+from civilization_sim.new_agents.people import Person
+from civilization_sim.new_agents.buildings import Barracks
 
 # Configure logging to file, but we will print major events manually
 logging.basicConfig(

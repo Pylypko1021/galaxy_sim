@@ -2,7 +2,9 @@
 import time
 import logging
 from civilization_sim.model import CivilizationModel
-from civilization_sim.agents import Person, House, Farm, Smithy, Market, Barracks, Road, Library, Hospital, Temple, Tavern, Barbarian, Mountain, River
+from civilization_sim.new_agents.people import Person, Barbarian
+from civilization_sim.new_agents.buildings import House, Farm, Smithy, Market, Barracks, Road, Library, Hospital, Temple, Tavern
+from civilization_sim.new_agents.resources import Mountain, River
 
 # Configure logging to file only
 logging.basicConfig(

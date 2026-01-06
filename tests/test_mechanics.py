@@ -1,6 +1,7 @@
 import pytest
 from civilization_sim.model import CivilizationModel
-from civilization_sim.agents import Person, Predator, Food
+from civilization_sim.new_agents.people import Person, Predator
+from civilization_sim.new_agents.resources import Food
 
 def test_starvation():
     """Test that agents die when energy reaches 0."""

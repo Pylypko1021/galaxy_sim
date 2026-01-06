@@ -8,7 +8,9 @@ import matplotlib.pyplot as plt
 
 sys.path.append(os.getcwd())
 from civilization_sim.model import CivilizationModel
-from civilization_sim.agents import Person, Predator, House, Food, Tree, Farm, Wall, Stone, IronOre, Smithy, Road, Market, Barracks
+from civilization_sim.new_agents.people import Person, Predator
+from civilization_sim.new_agents.resources import Food, Tree, Stone, IronOre
+from civilization_sim.new_agents.buildings import House, Farm, Wall, Smithy, Road, Market, Barracks
 
 # Disable the heavy simulation logging to speed up the test
 logging.getLogger().setLevel(logging.ERROR)

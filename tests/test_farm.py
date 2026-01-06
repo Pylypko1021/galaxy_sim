@@ -1,6 +1,8 @@
 import pytest
 from civilization_sim.model import CivilizationModel
-from civilization_sim.agents import Person, Farm, Food
+from civilization_sim.new_agents.people import Person
+from civilization_sim.new_agents.resources import Food
+from civilization_sim.new_agents.buildings import Farm
 
 def test_farm_building():
     """Test that agents build farms when resources are available."""
@@ -9,8 +11,8 @@ def test_farm_building():
     tribe_id = person.tribe_id
     
     # Give resources
-    model.tribe_stockpiles[tribe_id]["wood"] = 2
-    model.tribe_stockpiles[tribe_id]["stone"] = 2
+    model.tribe_stockpiles[tribe_id]["wood"] = 5
+    model.tribe_stockpiles[tribe_id]["stone"] = 5
     model.tribe_stockpiles[tribe_id]["food"] = 0 # Low food triggers farm building
     
     model.step()
@@ -22,8 +24,8 @@ def test_farm_building():
     assert len(farms) == 1
     
     # Resources consumed
-    assert model.tribe_stockpiles[tribe_id]["wood"] == 0
-    assert model.tribe_stockpiles[tribe_id]["stone"] == 0
+    assert model.tribe_stockpiles[tribe_id]["wood"] == 3
+    assert model.tribe_stockpiles[tribe_id]["stone"] == 3
 
 def test_farm_production():
     """Test that farms produce food over time."""

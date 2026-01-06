@@ -3,7 +3,9 @@ from mesa.time import RandomActivation
 from mesa.space import MultiGrid
 from mesa.datacollection import DataCollector
 import logging
-from civilization_sim.agents import Person, Food, Predator, Tree, House, Stone, Farm, Wall, IronOre, Smithy, Road, Market, Barracks, Barbarian, Hospital, Temple, Tavern, Mountain, River
+from civilization_sim.new_agents.people import Person, Predator, Barbarian
+from civilization_sim.new_agents.resources import Food, Tree, Stone, IronOre, Mountain, River
+from civilization_sim.new_agents.buildings import House, Farm, Wall, Smithy, Road, Market, Barracks, Hospital, Temple, Tavern
 
 # Configure logging
 logging.basicConfig(
@@ -98,7 +100,7 @@ class CivilizationModel(Model):
             logging.info(f"Tribe {i}: Gov={self.tribe_government[i]}, Religion={self.tribe_religion[i]}")
 
         # Stage 7: Geography and Ecology
-        self.season = "Spring"
+        self.season = "Весна"
         self.season_timer = 0
         self.season_length = 100 # Steps per season
         

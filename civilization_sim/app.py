@@ -5,7 +5,9 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from mesa.visualization import SolaraViz, make_space_component, make_plot_component
 from civilization_sim.model import CivilizationModel
-from civilization_sim.agents import Person, Food, Predator, Tree, House, Stone, Farm, Wall, IronOre, Smithy, Road, Market, Barracks, Library, Hospital, Temple, Tavern, Barbarian, Mountain, River
+from civilization_sim.new_agents.people import Person, Predator, Barbarian
+from civilization_sim.new_agents.resources import Food, Tree, Stone, IronOre, Mountain, River
+from civilization_sim.new_agents.buildings import House, Farm, Wall, Smithy, Road, Market, Barracks, Library, Hospital, Temple, Tavern
 
 def agent_portrayal(agent):
     if isinstance(agent, Person):

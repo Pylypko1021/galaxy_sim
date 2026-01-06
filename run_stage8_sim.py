@@ -2,7 +2,7 @@
 import time
 import logging
 from civilization_sim.model import CivilizationModel
-from civilization_sim.agents import Person
+from civilization_sim.new_agents.people import Person
 
 # Configure logging to file only
 logging.basicConfig(
