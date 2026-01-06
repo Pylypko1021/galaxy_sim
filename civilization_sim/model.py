@@ -95,7 +95,7 @@ class CivilizationModel(Model):
         for i in range(num_tribes):
             self.tribe_government[i] = self.random.choice(self.available_governments)
             self.tribe_religion[i] = self.random.choice(self.available_deities)
-            logging.info(f"Tribe {i}: Gov={self.tribe_government[i]}, Religion={self.tribe_religion[i]}")
+            logging.info(f"Плем'я {i}: Уряд={self.tribe_government[i]}, Релігія={self.tribe_religion[i]}")
 
         # Stage 7: Geography and Ecology
         self.season = "Spring"
@@ -121,7 +121,7 @@ class CivilizationModel(Model):
         self.available_traits = ["Agrarian", "Industrial", "Militaristic", "Expansionist"]
         for i in range(num_tribes):
             self.tribe_traits[i] = self.random.choice(self.available_traits)
-            logging.info(f"Tribe {i} initialized with trait: {self.tribe_traits[i]}")
+            logging.info(f"Плем'я {i} отримало рису: {self.tribe_traits[i]}")
         
         # Generate Terrain
         self.generate_terrain()
@@ -129,26 +129,26 @@ class CivilizationModel(Model):
         # Initialize DataCollector
         self.datacollector = DataCollector(
             model_reporters={
-                "People": compute_people_count,
-                "Food": compute_food_count,
-                "Predators": compute_predator_count,
-                "Trees": compute_tree_count,
-                "Stone": compute_stone_count,
-                "Iron": compute_iron_count,
-                "Houses": compute_house_count,
-                "Farms": compute_farm_count,
-                "Smithies": compute_smithy_count,
-                "Roads": compute_road_count,
-                "Markets": compute_market_count,
-                "Barracks": compute_barracks_count,
-                "Hospitals": compute_hospital_count,
-                "Temples": compute_temple_count,
-                "Taverns": compute_tavern_count,
-                "Avg Energy": compute_avg_energy
+                "Люди": compute_people_count,
+                "Їжа": compute_food_count,
+                "Хижаки": compute_predator_count,
+                "Дерева": compute_tree_count,
+                "Каміння": compute_stone_count,
+                "Залізо": compute_iron_count,
+                "Будинки": compute_house_count,
+                "Ферми": compute_farm_count,
+                "Кузні": compute_smithy_count,
+                "Дороги": compute_road_count,
+                "Ринки": compute_market_count,
+                "Казарми": compute_barracks_count,
+                "Лікарні": compute_hospital_count,
+                "Храми": compute_temple_count,
+                "Таверни": compute_tavern_count,
+                "Середня енергія": compute_avg_energy
             }
         )
 
-        logging.info("Simulation started")
+        logging.info("Симуляція розпочалася")
         
         # Create people
         for i in range(initial_people):
@@ -160,7 +160,7 @@ class CivilizationModel(Model):
             x = self.random.randrange(self.grid.width)
             y = self.random.randrange(self.grid.height)
             self.grid.place_agent(a, (x, y))
-            logging.info(f"Created Person {a.unique_id} of tribe {tribe_id} at ({x}, {y})")
+            logging.info(f"Створено Людину {a.unique_id} з племені {tribe_id} в ({x}, {y})")
 
         # Create predators
         for i in range(initial_predators):
@@ -170,7 +170,7 @@ class CivilizationModel(Model):
             x = self.random.randrange(self.grid.width)
             y = self.random.randrange(self.grid.height)
             self.grid.place_agent(p, (x, y))
-            logging.info(f"Created Predator {p.unique_id} of pack {pack_id} at ({x}, {y})")
+            logging.info(f"Створено Хижака {p.unique_id} зі зграї {pack_id} в ({x}, {y})")
 
         # Create food
         for i in range(initial_food):
@@ -279,7 +279,7 @@ class CivilizationModel(Model):
                  self.diplomacy[other_id][new_tribe_id] = "Neutral"
 
         self.next_tribe_id += 1
-        logging.info(f"Agents {agent1.unique_id} and {agent2.unique_id} formed a new tribe: {new_tribe_id} with trait {trait}")
+        logging.info(f"Агенти {agent1.unique_id} та {agent2.unique_id} сформували нове плем'я: {new_tribe_id} з рисою {trait}")
 
     def check_tribe_splitting(self):
         # Check if any tribe is too large and should split
@@ -366,7 +366,7 @@ class CivilizationModel(Model):
         for rebel in rebels:
             rebel.tribe_id = new_tribe_id
             
-        logging.info(f"Tribe {parent_tribe_id} SPLIT! New Tribe {new_tribe_id} formed with {len(rebels)} members. Trait: {trait}")
+        logging.info(f"Плем'я {parent_tribe_id} РОЗДІЛИЛОСЯ! Нове плем'я {new_tribe_id} сформовано з {len(rebels)} учасниками. Риса: {trait}")
 
 
     def update_politics(self):
@@ -404,7 +404,7 @@ class CivilizationModel(Model):
                         new_leader = max(members, key=lambda a: a.age)
                 
                 self.tribe_leaders[tribe_id] = new_leader.unique_id
-                logging.info(f"Tribe {tribe_id} ({gov}) elected new leader: {new_leader.unique_id}")
+                logging.info(f"Плем'я {tribe_id} ({gov}) обрало нового лідера: {new_leader.unique_id}")
 
         # 2. Diplomacy (War, Peace, Alliance)
         tribe_ids = list(self.tribe_stockpiles.keys())
@@ -440,7 +440,7 @@ class CivilizationModel(Model):
                         if self.random.random() < 0.05:
                             self.diplomacy[id1][id2] = "Alliance"
                             self.diplomacy[id2][id1] = "Alliance"
-                            logging.info(f"ALLIANCE FORMED: Tribe {id1} and Tribe {id2} are now Allies!")
+                            logging.info(f"УТВОРЕНО АЛЬЯНС: Плем'я {id1} та Плем'я {id2} тепер союзники!")
 
                 # --- WAR LOGIC ---
                 if not is_at_war and relation != "Alliance":
@@ -463,7 +463,7 @@ class CivilizationModel(Model):
                         self.wars.add(war_key)
                         self.diplomacy[id1][id2] = "War"
                         self.diplomacy[id2][id1] = "War"
-                        logging.info(f"WAR DECLARED: Tribe {id1} vs Tribe {id2} (Reason: Scarcity/Religion/Gov)")
+                        logging.info(f"ОГОЛОШЕНО ВІЙНУ: Плем'я {id1} проти Племені {id2} (Причина: Дефіцит/Релігія/Уряд)")
 
                 # --- PEACE LOGIC ---
                 elif is_at_war:
@@ -473,7 +473,7 @@ class CivilizationModel(Model):
                             self.wars.remove(war_key)
                             self.diplomacy[id1][id2] = "Neutral"
                             self.diplomacy[id2][id1] = "Neutral"
-                            logging.info(f"PEACE DECLARED: Tribe {id1} and Tribe {id2} are at peace.")
+                            logging.info(f"ОГОЛОШЕНО МИР: Плем'я {id1} та Плем'я {id2} уклали мир.")
 
     def check_research(self):
         for tribe_id, stockpile in self.tribe_stockpiles.items():
@@ -496,17 +496,17 @@ class CivilizationModel(Model):
                 cost = self.available_technologies[tech_to_research]["cost"]
                 stockpile["science"] -= cost
                 techs.add(tech_to_research)
-                logging.info(f"Tribe {tribe_id} researched {tech_to_research}!")
+                logging.info(f"Плем'я {tribe_id} вивчило {tech_to_research}!")
 
     def step(self):
         # Update Season
         self.season_timer += 1
         if self.season_timer >= self.season_length:
             self.season_timer = 0
-            seasons = ["Spring", "Summer", "Autumn", "Winter"]
+            seasons = ["Весна", "Літо", "Осінь", "Зима"]
             current_idx = seasons.index(self.season)
             self.season = seasons[(current_idx + 1) % 4]
-            logging.info(f"SEASON CHANGE: It is now {self.season}")
+            logging.info(f"ЗМІНА СЕЗОНУ: Тепер {self.season}")
 
         self.update_politics()
         self.check_research()
@@ -518,6 +518,8 @@ class CivilizationModel(Model):
         
         # Check for tribe splitting
         self.check_tribe_splitting()
+        
+        self.step_cataclysms()
 
         self.schedule.step()
         
@@ -529,7 +531,7 @@ class CivilizationModel(Model):
             f = Food(self)
             self.schedule.add(f)
             self.grid.place_agent(f, (x, y))
-            logging.info(f"New Food grew at ({x}, {y})")
+            logging.info(f"Нова Їжа виросла в ({x}, {y})")
 
         # Randomly grow new trees
         for _ in range(5):
@@ -538,7 +540,7 @@ class CivilizationModel(Model):
             t = Tree(self)
             self.schedule.add(t)
             self.grid.place_agent(t, (x, y))
-            logging.info(f"New Tree grew at ({x}, {y})")
+            logging.info(f"Нове Дерево виросло в ({x}, {y})")
 
         # Randomly spawn new stone (geological process, rare)
         for _ in range(5):
@@ -547,7 +549,7 @@ class CivilizationModel(Model):
             s = Stone(self)
             self.schedule.add(s)
             self.grid.place_agent(s, (x, y))
-            logging.info(f"New Stone appeared at ({x}, {y})")
+            logging.info(f"Новий Камінь з'явився в ({x}, {y})")
 
         # Randomly spawn new iron (very rare)
         if self.random.random() < 0.3: # 30% chance per step
@@ -556,7 +558,7 @@ class CivilizationModel(Model):
             ir = IronOre(self)
             self.schedule.add(ir)
             self.grid.place_agent(ir, (x, y))
-            logging.info(f"New Iron Ore appeared at ({x}, {y})")
+            logging.info(f"Нова Залізна Руда з'явилася в ({x}, {y})")
 
         # Respawn predator if extinct (Migration simulation)
         if compute_predator_count(self) == 0:
@@ -567,7 +569,7 @@ class CivilizationModel(Model):
                 x = self.random.randrange(self.grid.width)
                 y = self.random.randrange(self.grid.height)
                 self.grid.place_agent(p, (x, y))
-                logging.info(f"A new Predator of pack {pack_id} migrated to ({x}, {y})")
+                logging.info(f"Новий Хижак зграї {pack_id} мігрував до ({x}, {y})")
 
         # Respawn humans if near extinct (Migration simulation)
         if compute_people_count(self) <= 2:
@@ -580,7 +582,7 @@ class CivilizationModel(Model):
                     x = self.random.randrange(self.grid.width)
                     y = self.random.randrange(self.grid.height)
                     self.grid.place_agent(p, (x, y))
-                    logging.info(f"A new Person of tribe {tribe_id} migrated to ({x}, {y})")
+                    logging.info(f"Нова Людина з племені {tribe_id} мігрувала до ({x}, {y})")
 
         # --- Stage 5: Cataclysms and Challenges Logic ---
         
@@ -589,12 +591,12 @@ class CivilizationModel(Model):
             # Chance to end drought (e.g., 5% per step)
             if self.random.random() < 0.05:
                 self.drought_active = False
-                logging.info("The DROUGHT has ended! Rain returns to the land.")
+                logging.info("ПОСУХА закінчилася! Дощ повертається на землю.")
         else:
             # Chance to start drought (e.g., 0.5% per step) - Reduced from 1%
             if self.random.random() < 0.005:
                 self.drought_active = True
-                logging.info("A DROUGHT has begun! Crops will wither and farms will stop producing.")
+                logging.info("ПОЧАЛАСЯ ПОСУХА! Врожаї загинуть, а ферми припинять виробництво.")
 
         # 2. Plague Logic (New)
         # Small chance to start a plague if population is high (> 50)
@@ -604,7 +606,7 @@ class CivilizationModel(Model):
             if people:
                 patient_zero = self.random.choice(people)
                 patient_zero.infected = True
-                logging.info(f"PLAGUE OUTBREAK! Patient Zero is Person {patient_zero.unique_id} at {patient_zero.pos}")
+                logging.info(f"СПАЛАХ ЧУМИ! Нульовий пацієнт - Людина {patient_zero.unique_id} в {patient_zero.pos}")
 
         # 3. Barbarian Invasion Logic
         self.barbarian_wave_timer += 1
@@ -612,7 +614,7 @@ class CivilizationModel(Model):
             self.barbarian_wave_timer = 0
             # Spawn a wave of barbarians
             num_barbarians = self.random.randint(2, 5) # Reduced from 3-8
-            logging.info(f"BARBARIAN INVASION! {num_barbarians} barbarians have arrived to pillage!")
+            logging.info(f"НАШЕСТЯ ВАРВАРІВ! {num_barbarians} варварів прибули грабувати!")
             for _ in range(num_barbarians):
                 b = Barbarian(self)
                 self.schedule.add(b)
@@ -627,5 +629,61 @@ class CivilizationModel(Model):
                 self.grid.place_agent(b, (x, y))
             
         self.datacollector.collect(self)
-        logging.info(f"Step {self.schedule.steps} completed. People: {compute_people_count(self)}, Predators: {compute_predator_count(self)}, Food: {compute_food_count(self)}")
+        logging.info(f"Крок {self.schedule.steps} завершено. Люди: {compute_people_count(self)}, Хижаки: {compute_predator_count(self)}, Їжа: {compute_food_count(self)}")
+
+    def get_movement_cost(self, pos):
+        cell_contents = self.grid.get_cell_list_contents([pos])
+        cost = 2 # Base cost (Grass)
+        
+        has_road = False
+        
+        for agent in cell_contents:
+            if isinstance(agent, Road):
+                has_road = True
+            elif isinstance(agent, Mountain):
+                return 100 # Effectively impassable
+            elif isinstance(agent, River):
+                if not any(isinstance(a, Road) for a in cell_contents): # Bridge
+                    return 10 # Crossing river without bridge is hard
+            elif isinstance(agent, Tree):
+                cost = max(cost, 3) # Forest
+            elif isinstance(agent, Stone):
+                cost = max(cost, 4) # Rocky
+        
+        if has_road:
+            return 1
+            
+        return cost
+
+    def step_cataclysms(self):
+        # Wildfire
+        if self.random.random() < 0.01: # 1% chance per step
+             # Start a fire at a random tree
+             trees = [a for a in self.schedule.agents if isinstance(a, Tree)]
+             if trees:
+                 target = self.random.choice(trees)
+                 logging.info(f"Лісова пожежа почалася в {target.pos}")
+                 self.grid.remove_agent(target)
+                 self.schedule.remove(target)
+                 # Spread to neighbors
+                 neighbors = self.grid.get_neighbors(target.pos, moore=True, include_center=False, radius=1)
+                 for n in neighbors:
+                     if isinstance(n, Tree) and self.random.random() < 0.5:
+                         logging.info(f"Лісова пожежа поширилася на {n.pos}")
+                         self.grid.remove_agent(n)
+                         self.schedule.remove(n)
+
+        # Flood
+        if self.random.random() < 0.005: # 0.5% chance
+             rivers = [a for a in self.schedule.agents if isinstance(a, River)]
+             if rivers:
+                 origin = self.random.choice(rivers)
+                 logging.info(f"Повінь почалася в {origin.pos}")
+                 # Destroy farms/houses near river
+                 neighbors = self.grid.get_neighbors(origin.pos, moore=True, include_center=False, radius=1)
+                 for n in neighbors:
+                     if isinstance(n, (House, Farm)):
+                         logging.info(f"Повінь знищила {type(n).__name__} в {n.pos}")
+                         self.grid.remove_agent(n)
+                         self.schedule.remove(n)
 
