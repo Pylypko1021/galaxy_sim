@@ -169,7 +169,7 @@ model_params = {
     "width": {
         "type": "SliderInt",
         "value": 20,
-        "label": "Width",
+        "label": "Ширина",
         "min": 10,
         "max": 50,
         "step": 1,
@@ -177,7 +177,7 @@ model_params = {
     "height": {
         "type": "SliderInt",
         "value": 20,
-        "label": "Height",
+        "label": "Висота",
         "min": 10,
         "max": 50,
         "step": 1,
@@ -185,7 +185,7 @@ model_params = {
     "initial_people": {
         "type": "SliderInt",
         "value": 20,
-        "label": "Initial People",
+        "label": "Кількість людей",
         "min": 1,
         "max": 100,
         "step": 1,
@@ -193,7 +193,7 @@ model_params = {
     "num_tribes": {
         "type": "SliderInt",
         "value": 3,
-        "label": "Number of Tribes",
+        "label": "Кількість племен",
         "min": 0,
         "max": 10,
         "step": 1,
@@ -201,7 +201,7 @@ model_params = {
     "initial_predators": {
         "type": "SliderInt",
         "value": 2,
-        "label": "Initial Predators",
+        "label": "Кількість хижаків",
         "min": 0,
         "max": 20,
         "step": 1,
@@ -209,7 +209,7 @@ model_params = {
     "num_predator_packs": {
         "type": "SliderInt",
         "value": 1,
-        "label": "Number of Predator Packs",
+        "label": "Кількість зграй хижаків",
         "min": 0,
         "max": 10,
         "step": 1,
@@ -217,7 +217,7 @@ model_params = {
     "initial_food": {
         "type": "SliderInt",
         "value": 50,
-        "label": "Initial Food",
+        "label": "Початкова їжа",
         "min": 1,
         "max": 100,
         "step": 1,
@@ -225,7 +225,7 @@ model_params = {
     "initial_trees": {
         "type": "SliderInt",
         "value": 30,
-        "label": "Initial Trees",
+        "label": "Початкова кількість дерев",
         "min": 0,
         "max": 100,
         "step": 1,
@@ -233,7 +233,7 @@ model_params = {
     "initial_stone": {
         "type": "SliderInt",
         "value": 10,
-        "label": "Initial Stone",
+        "label": "Початкова кількість каміння",
         "min": 0,
         "max": 50,
         "step": 1,
@@ -241,7 +241,7 @@ model_params = {
     "initial_iron": {
         "type": "SliderInt",
         "value": 5,
-        "label": "Initial Iron",
+        "label": "Початкова кількість заліза",
         "min": 0,
         "max": 20,
         "step": 1,
@@ -254,13 +254,13 @@ page = SolaraViz(
     model,
     components=[
         make_space_component(agent_portrayal),
-        make_plot_component("People"),
-        make_plot_component("Food"),
-        make_plot_component("Houses"),
-        make_plot_component("Farms"),
-        make_plot_component("Avg Energy"),
+        make_plot_component("Люди"),
+        make_plot_component("Їжа"),
+        make_plot_component("Будинки"),
+        make_plot_component("Ферми"),
+        make_plot_component("Середня енергія"),
     ],
     model_params=model_params,
-    name="Civilization Simulation",
+    name="Симуляція Цивілізації",
     play_interval=0  # Maximum speed (no delay)
 )
