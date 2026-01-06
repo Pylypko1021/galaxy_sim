@@ -10,167 +10,128 @@ from civilization_sim.new_agents.resources import Food, Tree, Stone, IronOre, Mo
 from civilization_sim.new_agents.buildings import House, Farm, Wall, Smithy, Road, Market, Barracks, Library, Hospital, Temple, Tavern
 
 def agent_portrayal(agent):
-    if isinstance(agent, Person):
-        color = "grey"  # Default for loners or if tribes are off
-        if agent.tribe_id is not None and agent.model.tribe_colors:
-            color = agent.model.tribe_colors[agent.tribe_id % len(agent.model.tribe_colors)]
-        
-        marker = "o"
-        if hasattr(agent, "profession"):
-            if agent.profession == "Farmer":
-                marker = "P" # Plus (filled)
-            elif agent.profession == "Miner":
-                marker = "d" # Thin diamond
-            elif agent.profession == "Guard":
-                marker = "^" # Triangle up
-            elif agent.profession == "Blacksmith":
-                marker = "p" # Pentagon
-            elif agent.profession == "Merchant":
-                marker = "v" # Triangle down
-            elif agent.profession == "Soldier":
-                marker = ">" # Triangle right
-            elif agent.profession == "Scholar":
-                marker = "*" # Star
-            elif agent.profession == "Healer":
-                marker = "+" # Plus
-            elif agent.profession == "Priest":
-                marker = "1" # Tri_down (using 1 as placeholder for now, or maybe just a different shape)
+    image = None
+    color = "black"
+    marker = "o"
+    size = 50
+    layer = 1
 
-        return {
-            "color": color,
-            "marker": marker,
-            "size": 50,
-        }
+    # Base Resource Paths
+    # Solara serves files in 'public' folder at the root path or /static
+    # We moved Resources to civilization_sim/public/Resources
+    base_unit_path = "/static/public/Resources/Units"
+    base_building_path = "/static/public/Resources/Buildings"
+    base_terrain_path = "/static/public/Resources/Terrain"
+
+    if isinstance(agent, Person):
+        layer = 2
+        tribe_color = agent.model.tribe_colors[agent.tribe_id % len(agent.model.tribe_colors)] if agent.tribe_id is not None and hasattr(agent.model, 'tribe_colors') and agent.model.tribe_colors else "Blue"
+        if tribe_color.startswith("#"): # Fallback if hex
+            tribe_color = "Blue"
+        
+        # Determine Unit Type based on profession
+        unit_type = "Pawn"
+        action = "Idle"
+        if hasattr(agent, "profession"):
+             if agent.profession in ["Soldier", "Guard"]:
+                 unit_type = "Warrior"
+             elif agent.profession == "Archer":
+                 unit_type = "Archer"
+             elif agent.profession in ["Priest", "Healer", "Scholar"]:
+                 unit_type = "Monk"
+        
+        # Construct Path: Resources/Units/Blue Units/Pawn/Pawn_Idle.png
+        # Note: Folder names are like "Blue Units"
+        image = f"{base_unit_path}/{tribe_color} Units/{unit_type}/{unit_type}_{action}.png"
+        size = 40
+
     elif isinstance(agent, Barbarian):
-        return {
-            "color": "red",
-            "marker": "x",
-            "size": 60,
-        }
+        layer = 2
+        image = f"{base_unit_path}/Red Units/Warrior/Warrior_Idle.png" # Barbarians as Red Warriors
+        size = 40
+
     elif isinstance(agent, Predator):
-        color = "#A52A2A"  # A default brown-red for loner predators
-        if agent.pack_id is not None and agent.model.pack_colors:
-            color = agent.model.pack_colors[agent.pack_id % len(agent.model.pack_colors)]
-        return {
-            "color": color,
-            "marker": "o",
-            "size": 60,
-        }
+        layer = 2
+        # Use Sheep as placeholder? No, Sheep is prey. Maybe just a generic icon or "Red Units/Pawn"
+        # Or no image, just shape.
+        # Check if we have Wolves? No.
+        # Let's use Red Units/Pawn/Pawn_Run.png
+        image = f"{base_unit_path}/Red Units/Pawn/Pawn_Run.png"
+        size = 35
+
     elif isinstance(agent, Food):
-        return {
-            "color": "green",
-            "marker": "s",
-            "size": 30
-        }
-    elif isinstance(agent, Tree):
-        return {
-            "color": "brown",
-            "marker": "s",
-            "size": 40
-        }
-    elif isinstance(agent, Stone):
-        return {
-            "color": "grey",
-            "marker": "s",
-            "size": 40
-        }
-    elif isinstance(agent, IronOre):
-        return {
-            "color": "#B7410E", # Rust
-            "marker": "s",
-            "size": 40
-        }
-    elif isinstance(agent, House):
-        return {
-            "color": "black",
-            "marker": "s",
-            "size": 70
-        }
-    elif isinstance(agent, Farm):
-        return {
-            "color": "yellow",
-            "marker": "s",
-            "size": 60
-        }
-    elif isinstance(agent, Smithy):
-        return {
-            "color": "#8B0000", # Dark Red
-            "marker": "s",
-            "size": 70
-        }
-    elif isinstance(agent, Wall):
-        return {
-            "color": "grey",
-            "marker": "s",
-            "size": 80
-        }
-         
-    elif isinstance(agent, Road):
-        return {
-            "color": "#D2B48C", # Tan
-            "marker": "s",
-            "size": 25
-        }
-    elif isinstance(agent, Market):
-        return {
-            "color": "purple",
-            "marker": "s",
-            "size": 70
-        }
-    elif isinstance(agent, Barracks):
-        return {
-            "color": "red",
-            "marker": "s",
-            "size": 70
-        }
-    elif isinstance(agent, Library):
-        return {
-            "color": "blue",
-            "marker": "s",
-            "size": 70
-        }
-    elif isinstance(agent, Hospital):
-        return {
-            "color": "pink",
-            "marker": "s",
-            "size": 70
-        }
-    elif isinstance(agent, Temple):
-        return {
-            "color": "gold",
-            "marker": "s",
-            "size": 70
-        }
-    elif isinstance(agent, Tavern):
-        return {
-            "color": "orange",
-            "marker": "s",
-            "size": 70
-        }
-    elif isinstance(agent, Mountain):
-        return {
-            "color": "grey",
-            "marker": "^", # Triangle up
-            "size": 90
-        }
-    elif isinstance(agent, River):
-        return {
-            "color": "blue",
-            "marker": "s",
-            "size": 80
-        }
+        layer = 1
+        # Sheep is Food source
+        image = f"{base_terrain_path}/Resources/Meat/Sheep/Sheep_Idle.png"
+        size = 30
     
-    # Default fallback to prevent NoneType error
+    elif isinstance(agent, Tree):
+        layer = 1
+        image = f"{base_terrain_path}/Resources/Wood/Trees/Tree1.png"
+        size = 50
+
+    elif isinstance(agent, Stone):
+        layer = 1
+        image = f"{base_terrain_path}/Decorations/Rocks/Rock1.png"
+        size = 40
+
+    elif isinstance(agent, IronOre):
+        layer = 1
+        image = f"{base_terrain_path}/Resources/Gold/Gold Stones/Gold Stone 1.png"
+        size = 40
+
+    elif isinstance(agent, Mountain):
+        layer = 0
+        image = f"{base_terrain_path}/Decorations/Rocks/Rock4.png" # Big rock
+        size = 80
+    
+    elif isinstance(agent, House):
+        layer = 1
+        tribe_color = agent.model.tribe_colors[agent.tribe_id % len(agent.model.tribe_colors)] if agent.tribe_id is not None and hasattr(agent.model, 'tribe_colors') and agent.model.tribe_colors else "Blue"
+        if tribe_color.startswith("#"): tribe_color = "Blue"
+        image = f"{base_building_path}/{tribe_color} Buildings/House1.png"
+        size = 60
+
+    elif isinstance(agent, Farm):
+        layer = 1
+        # Use Bushes for basic farm look
+        image = f"{base_terrain_path}/Decorations/Bushes/Bushe1.png"
+        size = 50
+    
+    elif isinstance(agent, Wall):
+        layer = 1
+        tribe_color = "Blue" # Walls often neutral or specific to tribe. Use tribe logic if Wall has tribe_id? Wall inherits nothing usually.
+        # But wait, Wall has no tribe_id in init?
+        # Use generic Tower
+        image = f"{base_building_path}/Blue Buildings/Tower.png"
+        size = 60
+    
+    elif isinstance(agent, (Barracks, Smithy, Market, Library, Hospital, Temple, Tavern)):
+        layer = 1
+        tribe_color = agent.model.tribe_colors[agent.tribe_id % len(agent.model.tribe_colors)] if agent.tribe_id is not None and hasattr(agent.model, 'tribe_colors') and agent.model.tribe_colors else "Blue"
+        if tribe_color.startswith("#"): tribe_color = "Blue"
+        
+        building_img = "House2.png"
+        if isinstance(agent, Barracks): building_img = "Barracks.png"
+        elif isinstance(agent, Temple): building_img = "Monastery.png"
+        elif isinstance(agent, Library): building_img = "Monastery.png" # Use Monastery for Library too
+        elif isinstance(agent, Smithy): building_img = "Archery.png" # Placeholder
+        elif isinstance(agent, Market): building_img = "Castle.png" # Castle as Market/Center
+        
+        image = f"{base_building_path}/{tribe_color} Buildings/{building_img}"
+        size = 70
+
     return {
-        "color": "black",
-        "marker": "o",
-        "size": 10
+        "color": color,   # Fallback
+        "marker": marker, # Fallback
+        "size": size,
+        "image": image,   # Image Path
     }
 
 model_params = {
     "width": {
         "type": "SliderInt",
-        "value": 20,
+        "value": 40,
         "label": "Ширина",
         "min": 10,
         "max": 50,
@@ -178,7 +139,7 @@ model_params = {
     },
     "height": {
         "type": "SliderInt",
-        "value": 20,
+        "value": 30,
         "label": "Висота",
         "min": 10,
         "max": 50,
@@ -186,18 +147,18 @@ model_params = {
     },
     "initial_people": {
         "type": "SliderInt",
-        "value": 20,
+        "value": 50,
         "label": "Кількість людей",
         "min": 1,
-        "max": 100,
+        "max": 200,
         "step": 1,
     },
     "num_tribes": {
         "type": "SliderInt",
-        "value": 3,
+        "value": 5,
         "label": "Кількість племен",
         "min": 0,
-        "max": 10,
+        "max": 5,
         "step": 1,
     },
     "initial_predators": {
@@ -256,11 +217,7 @@ page = SolaraViz(
     model,
     components=[
         make_space_component(agent_portrayal),
-        make_plot_component("Люди"),
-        make_plot_component("Їжа"),
-        make_plot_component("Будинки"),
-        make_plot_component("Ферми"),
-        make_plot_component("Середня енергія"),
+        # Removed plots to maximize space for the grid
     ],
     model_params=model_params,
     name="Симуляція Цивілізації",

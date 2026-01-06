@@ -73,8 +73,9 @@ class CivilizationModel(Model):
         self.running = True
         self.num_tribes = num_tribes
         self.num_predator_packs = num_predator_packs
-        # Generate a list of random colors for the tribes
-        self.tribe_colors = ["#" + ''.join(self.random.choices('0123456789ABCDEF', k=6)) for _ in range(num_tribes)] if num_tribes > 0 else []
+        # Assign fixed colors for tribes to match available asset packs
+        self.available_colors = ["Red", "Blue", "Purple", "Yellow", "Black"]
+        self.tribe_colors = [self.available_colors[i % len(self.available_colors)] for i in range(num_tribes)] if num_tribes > 0 else []
         self.pack_colors = ["#" + ''.join(self.random.choices('0123456789ABCDEF', k=6)) for _ in range(num_predator_packs)] if num_predator_packs > 0 else []
         self.next_tribe_id = num_tribes
         self.tribe_stockpiles = {i: {"food": 0, "wood": 0, "stone": 0, "iron": 0, "tools": 0, "science": 0} for i in range(num_tribes)}

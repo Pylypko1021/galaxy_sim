@@ -1,0 +1,505 @@
+.
+├── Buildings
+│   ├── Black Buildings
+│   │   ├── Archery.png
+│   │   ├── Barracks.png
+│   │   ├── Castle.png
+│   │   ├── House1.png
+│   │   ├── House2.png
+│   │   ├── House3.png
+│   │   ├── Monastery.png
+│   │   └── Tower.png
+│   ├── Blue Buildings
+│   │   ├── Archery.png
+│   │   ├── Barracks.png
+│   │   ├── Castle.png
+│   │   ├── House1.png
+│   │   ├── House2.png
+│   │   ├── House3.png
+│   │   ├── Monastery.png
+│   │   └── Tower.png
+│   ├── Purple Buildings
+│   │   ├── Archery.png
+│   │   ├── Barracks.png
+│   │   ├── Castle.png
+│   │   ├── House1.png
+│   │   ├── House2.png
+│   │   ├── House3.png
+│   │   ├── Monastery.png
+│   │   └── Tower.png
+│   ├── Red Buildings
+│   │   ├── Archery.png
+│   │   ├── Barracks.png
+│   │   ├── Castle.png
+│   │   ├── House1.png
+│   │   ├── House2.png
+│   │   ├── House3.png
+│   │   ├── Monastery.png
+│   │   └── Tower.png
+│   └── Yellow Buildings
+│       ├── Archery.png
+│       ├── Barracks.png
+│       ├── Castle.png
+│       ├── House1.png
+│       ├── House2.png
+│       ├── House3.png
+│       ├── Monastery.png
+│       └── Tower.png
+├── Particle FX
+│   ├── Dust_01.png
+│   ├── Dust_02.png
+│   ├── Explosion_01.png
+│   ├── Explosion_02.png
+│   ├── Fire_01.png
+│   ├── Fire_02.png
+│   ├── Fire_03.png
+│   ├── Particle FX.aseprite
+│   └── Water Splash.png
+├── Terrain
+│   ├── Decorations
+│   │   ├── Bushes
+│   │   │   ├── Bushe1.png
+│   │   │   ├── Bushe2.png
+│   │   │   ├── Bushe3.png
+│   │   │   ├── Bushe4.png
+│   │   │   └── Bushes.aseprite
+│   │   ├── Clouds
+│   │   │   ├── Clouds.aseprite
+│   │   │   ├── Clouds_01.png
+│   │   │   ├── Clouds_02.png
+│   │   │   ├── Clouds_03.png
+│   │   │   ├── Clouds_04.png
+│   │   │   ├── Clouds_05.png
+│   │   │   ├── Clouds_06.png
+│   │   │   ├── Clouds_07.png
+│   │   │   └── Clouds_08.png
+│   │   ├── Rocks
+│   │   │   ├── Rock1.png
+│   │   │   ├── Rock2.png
+│   │   │   ├── Rock3.png
+│   │   │   └── Rock4.png
+│   │   ├── Rocks in the Water
+│   │   │   ├── Water Rocks_01.aseprite
+│   │   │   ├── Water Rocks_01.png
+│   │   │   ├── Water Rocks_02.aseprite
+│   │   │   ├── Water Rocks_02.png
+│   │   │   ├── Water Rocks_03.aseprite
+│   │   │   ├── Water Rocks_03.png
+│   │   │   ├── Water Rocks_04.aseprite
+│   │   │   └── Water Rocks_04.png
+│   │   └── Rubber Duck
+│   │       ├── Rubber Duck.aseprite
+│   │       └── Rubber duck.png
+│   ├── Resources
+│   │   ├── Gold
+│   │   │   ├── Gold Resource
+│   │   │   │   ├── Gold Resource.aseprite
+│   │   │   │   ├── Gold_Resource.png
+│   │   │   │   └── Gold_Resource_Highlight.png
+│   │   │   └── Gold Stones
+│   │   │       ├── Gold Stone 1.png
+│   │   │       ├── Gold Stone 1_Highlight.png
+│   │   │       ├── Gold Stone 2.png
+│   │   │       ├── Gold Stone 2_Highlight.png
+│   │   │       ├── Gold Stone 3.png
+│   │   │       ├── Gold Stone 3_Highlight.png
+│   │   │       ├── Gold Stone 4.png
+│   │   │       ├── Gold Stone 4_Highlight.png
+│   │   │       ├── Gold Stone 5.png
+│   │   │       ├── Gold Stone 5_Highlight.png
+│   │   │       ├── Gold Stone 6.png
+│   │   │       ├── Gold Stone 6_Highlight.png
+│   │   │       └── Gold Stones.aseprite
+│   │   ├── Meat
+│   │   │   ├── Meat Resource
+│   │   │   │   └── Meat Resource.png
+│   │   │   └── Sheep
+│   │   │       ├── Sheep.aseprite
+│   │   │       ├── Sheep_Grass.png
+│   │   │       ├── Sheep_Idle.png
+│   │   │       └── Sheep_Move.png
+│   │   ├── Tools
+│   │   │   ├── Tool_01.png
+│   │   │   ├── Tool_02.png
+│   │   │   ├── Tool_03.png
+│   │   │   └── Tool_04.png
+│   │   └── Wood
+│   │       ├── Trees
+│   │       │   ├── Stump 1.png
+│   │       │   ├── Stump 2.png
+│   │       │   ├── Stump 3.png
+│   │       │   ├── Stump 4.png
+│   │       │   ├── Tree1.png
+│   │       │   ├── Tree2.png
+│   │       │   ├── Tree3.png
+│   │       │   ├── Tree4.png
+│   │       │   └── Trees.aseprite
+│   │       └── Wood Resource
+│   │           └── Wood Resource.png
+│   └── Tileset
+│       ├── Shadow.png
+│       ├── Tilemap_color1.png
+│       ├── Tilemap_color2.png
+│       ├── Tilemap_color3.png
+│       ├── Tilemap_color4.png
+│       ├── Tilemap_color5.png
+│       ├── Water Background color.png
+│       ├── Water Foam.aseprite
+│       └── Water Foam.png
+├── UI Elements
+│   ├── UI Banners from the store page
+│   │   ├── Banner
+│   │   │   ├── Banner.png
+│   │   │   └── Slots.png
+│   │   └── Ribbons
+│   │       ├── Ribbon_Black.png
+│   │       ├── Ribbon_Blue.png
+│   │       ├── Ribbon_Purple.png
+│   │       ├── Ribbon_Red.png
+│   │       └── Ribbon_Yellow.png
+│   └── UI Elements
+│       ├── Banners
+│       │   ├── Banner.png
+│       │   └── Banner_Slots.png
+│       ├── Bars
+│       │   ├── BigBar_Base.png
+│       │   ├── BigBar_Fill.png
+│       │   ├── SmallBar_Base.png
+│       │   └── SmallBar_Fill.png
+│       ├── Buttons
+│       │   ├── BigBlueButton_Pressed.png
+│       │   ├── BigBlueButton_Regular.png
+│       │   ├── BigRedButton_Pressed.png
+│       │   ├── BigRedButton_Regular.png
+│       │   ├── SmallBlueRoundButton_Pressed.png
+│       │   ├── SmallBlueRoundButton_Regular.png
+│       │   ├── SmallBlueSquareButton_Pressed.png
+│       │   ├── SmallBlueSquareButton_Regular.png
+│       │   ├── SmallRedRoundButton_Pressed.png
+│       │   ├── SmallRedRoundButton_Regular.png
+│       │   ├── SmallRedSquareButton_Pressed.png
+│       │   ├── SmallRedSquareButton_Regular.png
+│       │   ├── TinyRoundBlueButton.png
+│       │   ├── TinyRoundRedButton.png
+│       │   ├── TinySquareBlueButton.png
+│       │   └── TinySquareRedButton.png
+│       ├── Cursors
+│       │   ├── Cursor_01.png
+│       │   ├── Cursor_02.png
+│       │   ├── Cursor_03.png
+│       │   └── Cursor_04.png
+│       ├── Human Avatars
+│       │   ├── Avatars_01.png
+│       │   ├── Avatars_02.png
+│       │   ├── Avatars_03.png
+│       │   ├── Avatars_04.png
+│       │   ├── Avatars_05.png
+│       │   ├── Avatars_06.png
+│       │   ├── Avatars_07.png
+│       │   ├── Avatars_08.png
+│       │   ├── Avatars_09.png
+│       │   ├── Avatars_10.png
+│       │   ├── Avatars_11.png
+│       │   ├── Avatars_12.png
+│       │   ├── Avatars_13.png
+│       │   ├── Avatars_14.png
+│       │   ├── Avatars_15.png
+│       │   ├── Avatars_16.png
+│       │   ├── Avatars_17.png
+│       │   ├── Avatars_18.png
+│       │   ├── Avatars_19.png
+│       │   ├── Avatars_20.png
+│       │   ├── Avatars_21.png
+│       │   ├── Avatars_22.png
+│       │   ├── Avatars_23.png
+│       │   ├── Avatars_24.png
+│       │   └── Avatars_25.png
+│       ├── Icons
+│       │   ├── Icon_01.png
+│       │   ├── Icon_02.png
+│       │   ├── Icon_03.png
+│       │   ├── Icon_04.png
+│       │   ├── Icon_05.png
+│       │   ├── Icon_06.png
+│       │   ├── Icon_07.png
+│       │   ├── Icon_08.png
+│       │   ├── Icon_09.png
+│       │   ├── Icon_10.png
+│       │   ├── Icon_11.png
+│       │   └── Icon_12.png
+│       ├── Papers
+│       │   ├── RegularPaper.png
+│       │   └── SpecialPaper.png
+│       ├── Ribbons
+│       │   ├── BigRibbons.png
+│       │   └── SmallRibbons.png
+│       ├── Swords
+│       │   └── Swords.png
+│       └── Wood Table
+│           ├── WoodTable.png
+│           └── WoodTable_Slots.png
+├── Units
+│   ├── Black Units
+│   │   ├── Archer
+│   │   │   ├── Archer_Idle.png
+│   │   │   ├── Archer_Run.png
+│   │   │   ├── Archer_Shoot.png
+│   │   │   └── Arrow.png
+│   │   ├── Lancer
+│   │   │   ├── Lancer_DownRight_Attack.png
+│   │   │   ├── Lancer_DownRight_Defence.png
+│   │   │   ├── Lancer_Down_Attack.png
+│   │   │   ├── Lancer_Down_Defence.png
+│   │   │   ├── Lancer_Idle.png
+│   │   │   ├── Lancer_Right_Attack.png
+│   │   │   ├── Lancer_Right_Defence.png
+│   │   │   ├── Lancer_Run.png
+│   │   │   ├── Lancer_UpRight_Attack.png
+│   │   │   ├── Lancer_UpRight_Defence.png
+│   │   │   ├── Lancer_Up_Attack.png
+│   │   │   └── Lancer_Up_Defence.png
+│   │   ├── Monk
+│   │   │   ├── Heal.png
+│   │   │   ├── Heal_Effect.png
+│   │   │   ├── Idle.png
+│   │   │   └── Run.png
+│   │   ├── Pawn
+│   │   │   ├── Pawn_Idle Axe.png
+│   │   │   ├── Pawn_Idle Gold.png
+│   │   │   ├── Pawn_Idle Hammer.png
+│   │   │   ├── Pawn_Idle Knife.png
+│   │   │   ├── Pawn_Idle Meat.png
+│   │   │   ├── Pawn_Idle Pickaxe.png
+│   │   │   ├── Pawn_Idle Wood.png
+│   │   │   ├── Pawn_Idle.png
+│   │   │   ├── Pawn_Interact Axe.png
+│   │   │   ├── Pawn_Interact Hammer.png
+│   │   │   ├── Pawn_Interact Knife.png
+│   │   │   ├── Pawn_Interact Pickaxe.png
+│   │   │   ├── Pawn_Run Axe.png
+│   │   │   ├── Pawn_Run Gold.png
+│   │   │   ├── Pawn_Run Hammer.png
+│   │   │   ├── Pawn_Run Knife.png
+│   │   │   ├── Pawn_Run Meat.png
+│   │   │   ├── Pawn_Run Pickaxe.png
+│   │   │   ├── Pawn_Run Wood.png
+│   │   │   └── Pawn_Run.png
+│   │   └── Warrior
+│   │       ├── Warrior_Attack1.png
+│   │       ├── Warrior_Attack2.png
+│   │       ├── Warrior_Guard.png
+│   │       ├── Warrior_Idle.png
+│   │       └── Warrior_Run.png
+│   ├── Blue Units
+│   │   ├── Archer
+│   │   │   ├── Archer_Idle.png
+│   │   │   ├── Archer_Run.png
+│   │   │   ├── Archer_Shoot.png
+│   │   │   └── Arrow.png
+│   │   ├── Lancer
+│   │   │   ├── Lancer_DownRight_Attack.png
+│   │   │   ├── Lancer_DownRight_Defence.png
+│   │   │   ├── Lancer_Down_Attack.png
+│   │   │   ├── Lancer_Down_Defence.png
+│   │   │   ├── Lancer_Idle.png
+│   │   │   ├── Lancer_Right_Attack.png
+│   │   │   ├── Lancer_Right_Defence.png
+│   │   │   ├── Lancer_Run.png
+│   │   │   ├── Lancer_UpRight_Attack.png
+│   │   │   ├── Lancer_UpRight_Defence.png
+│   │   │   ├── Lancer_Up_Attack.png
+│   │   │   └── Lancer_Up_Defence.png
+│   │   ├── Monk
+│   │   │   ├── Heal.png
+│   │   │   ├── Heal_Effect.png
+│   │   │   ├── Idle.png
+│   │   │   └── Run.png
+│   │   ├── Pawn
+│   │   │   ├── Pawn_Idle Axe.png
+│   │   │   ├── Pawn_Idle Gold.png
+│   │   │   ├── Pawn_Idle Hammer.png
+│   │   │   ├── Pawn_Idle Knife.png
+│   │   │   ├── Pawn_Idle Meat.png
+│   │   │   ├── Pawn_Idle Pickaxe.png
+│   │   │   ├── Pawn_Idle Wood.png
+│   │   │   ├── Pawn_Idle.png
+│   │   │   ├── Pawn_Interact Axe.png
+│   │   │   ├── Pawn_Interact Hammer.png
+│   │   │   ├── Pawn_Interact Knife.png
+│   │   │   ├── Pawn_Interact Pickaxe.png
+│   │   │   ├── Pawn_Run Axe.png
+│   │   │   ├── Pawn_Run Gold.png
+│   │   │   ├── Pawn_Run Hammer.png
+│   │   │   ├── Pawn_Run Knife.png
+│   │   │   ├── Pawn_Run Meat.png
+│   │   │   ├── Pawn_Run Pickaxe.png
+│   │   │   ├── Pawn_Run Wood.png
+│   │   │   └── Pawn_Run.png
+│   │   └── Warrior
+│   │       ├── Warrior_Attack1.png
+│   │       ├── Warrior_Attack2.png
+│   │       ├── Warrior_Guard.png
+│   │       ├── Warrior_Idle.png
+│   │       └── Warrior_Run.png
+│   ├── Purple Units
+│   │   ├── Archer
+│   │   │   ├── Archer_Idle.png
+│   │   │   ├── Archer_Run.png
+│   │   │   ├── Archer_Shoot.png
+│   │   │   └── Arrow.png
+│   │   ├── Lancer
+│   │   │   ├── Lancer_DownRight_Attack.png
+│   │   │   ├── Lancer_DownRight_Defence.png
+│   │   │   ├── Lancer_Down_Attack.png
+│   │   │   ├── Lancer_Down_Defence.png
+│   │   │   ├── Lancer_Idle.png
+│   │   │   ├── Lancer_Right_Attack.png
+│   │   │   ├── Lancer_Right_Defence.png
+│   │   │   ├── Lancer_Run.png
+│   │   │   ├── Lancer_UpRight_Attack.png
+│   │   │   ├── Lancer_UpRight_Defence.png
+│   │   │   ├── Lancer_Up_Attack.png
+│   │   │   └── Lancer_Up_Defence.png
+│   │   ├── Monk
+│   │   │   ├── Heal.png
+│   │   │   ├── Heal_Effect.png
+│   │   │   ├── Idle.png
+│   │   │   └── Run.png
+│   │   ├── Pawn
+│   │   │   ├── Pawn_Idle Axe.png
+│   │   │   ├── Pawn_Idle Gold.png
+│   │   │   ├── Pawn_Idle Hammer.png
+│   │   │   ├── Pawn_Idle Knife.png
+│   │   │   ├── Pawn_Idle Meat.png
+│   │   │   ├── Pawn_Idle Pickaxe.png
+│   │   │   ├── Pawn_Idle Wood.png
+│   │   │   ├── Pawn_Idle.png
+│   │   │   ├── Pawn_Interact Axe.png
+│   │   │   ├── Pawn_Interact Hammer.png
+│   │   │   ├── Pawn_Interact Knife.png
+│   │   │   ├── Pawn_Interact Pickaxe.png
+│   │   │   ├── Pawn_Run Axe.png
+│   │   │   ├── Pawn_Run Gold.png
+│   │   │   ├── Pawn_Run Hammer.png
+│   │   │   ├── Pawn_Run Knife.png
+│   │   │   ├── Pawn_Run Meat.png
+│   │   │   ├── Pawn_Run Pickaxe.png
+│   │   │   ├── Pawn_Run Wood.png
+│   │   │   └── Pawn_Run.png
+│   │   └── Warrior
+│   │       ├── Warrior_Attack1.png
+│   │       ├── Warrior_Attack2.png
+│   │       ├── Warrior_Guard.png
+│   │       ├── Warrior_Idle.png
+│   │       └── Warrior_Run.png
+│   ├── Red Units
+│   │   ├── Archer
+│   │   │   ├── Archer_Idle.png
+│   │   │   ├── Archer_Run.png
+│   │   │   ├── Archer_Shoot.png
+│   │   │   └── Arrow.png
+│   │   ├── Lancer
+│   │   │   ├── Lancer_DownRight_Attack.png
+│   │   │   ├── Lancer_DownRight_Defence.png
+│   │   │   ├── Lancer_Down_Attack.png
+│   │   │   ├── Lancer_Down_Defence.png
+│   │   │   ├── Lancer_Idle.png
+│   │   │   ├── Lancer_Right_Attack.png
+│   │   │   ├── Lancer_Right_Defence.png
+│   │   │   ├── Lancer_Run.png
+│   │   │   ├── Lancer_UpRight_Attack.png
+│   │   │   ├── Lancer_UpRight_Defence.png
+│   │   │   ├── Lancer_Up_Attack.png
+│   │   │   └── Lancer_Up_Defence.png
+│   │   ├── Monk
+│   │   │   ├── Heal.png
+│   │   │   ├── Heal_Effect.png
+│   │   │   ├── Idle.png
+│   │   │   └── Run.png
+│   │   ├── Pawn
+│   │   │   ├── Pawn_Idle Axe.png
+│   │   │   ├── Pawn_Idle Gold.png
+│   │   │   ├── Pawn_Idle Hammer.png
+│   │   │   ├── Pawn_Idle Knife.png
+│   │   │   ├── Pawn_Idle Meat.png
+│   │   │   ├── Pawn_Idle Pickaxe.png
+│   │   │   ├── Pawn_Idle Wood.png
+│   │   │   ├── Pawn_Idle.png
+│   │   │   ├── Pawn_Interact Axe.png
+│   │   │   ├── Pawn_Interact Hammer.png
+│   │   │   ├── Pawn_Interact Knife.png
+│   │   │   ├── Pawn_Interact Pickaxe.png
+│   │   │   ├── Pawn_Run Axe.png
+│   │   │   ├── Pawn_Run Gold.png
+│   │   │   ├── Pawn_Run Hammer.png
+│   │   │   ├── Pawn_Run Knife.png
+│   │   │   ├── Pawn_Run Meat.png
+│   │   │   ├── Pawn_Run Pickaxe.png
+│   │   │   ├── Pawn_Run Wood.png
+│   │   │   └── Pawn_Run.png
+│   │   └── Warrior
+│   │       ├── Warrior_Attack1.png
+│   │       ├── Warrior_Attack2.png
+│   │       ├── Warrior_Guard.png
+│   │       ├── Warrior_Idle.png
+│   │       └── Warrior_Run.png
+│   ├── Units (aseprite in Blue only)
+│   │   ├── Archer.aseprite
+│   │   ├── Lancer.aseprite
+│   │   ├── Monk.aseprite
+│   │   ├── Pawn.aseprite
+│   │   └── Warrior.aseprite
+│   └── Yellow Units
+│       ├── Archer
+│       │   ├── Archer_Idle.png
+│       │   ├── Archer_Run.png
+│       │   ├── Archer_Shoot.png
+│       │   └── Arrow.png
+│       ├── Lancer
+│       │   ├── Lancer_DownRight_Attack.png
+│       │   ├── Lancer_DownRight_Defence.png
+│       │   ├── Lancer_Down_Attack.png
+│       │   ├── Lancer_Down_Defence.png
+│       │   ├── Lancer_Idle.png
+│       │   ├── Lancer_Right_Attack.png
+│       │   ├── Lancer_Right_Defence.png
+│       │   ├── Lancer_Run.png
+│       │   ├── Lancer_UpRight_Attack.png
+│       │   ├── Lancer_UpRight_Defence.png
+│       │   ├── Lancer_Up_Attack.png
+│       │   └── Lancer_Up_Defence.png
+│       ├── Monk
+│       │   ├── Heal.png
+│       │   ├── Heal_Effect.png
+│       │   ├── Idle.png
+│       │   └── Run.png
+│       ├── Pawn
+│       │   ├── Pawn_Idle Axe.png
+│       │   ├── Pawn_Idle Gold.png
+│       │   ├── Pawn_Idle Hammer.png
+│       │   ├── Pawn_Idle Knife.png
+│       │   ├── Pawn_Idle Meat.png
+│       │   ├── Pawn_Idle Pickaxe.png
+│       │   ├── Pawn_Idle Wood.png
+│       │   ├── Pawn_Idle.png
+│       │   ├── Pawn_Interact Axe.png
+│       │   ├── Pawn_Interact Hammer.png
+│       │   ├── Pawn_Interact Knife.png
+│       │   ├── Pawn_Interact Pickaxe.png
+│       │   ├── Pawn_Run Axe.png
+│       │   ├── Pawn_Run Gold.png
+│       │   ├── Pawn_Run Hammer.png
+│       │   ├── Pawn_Run Knife.png
+│       │   ├── Pawn_Run Meat.png
+│       │   ├── Pawn_Run Pickaxe.png
+│       │   ├── Pawn_Run Wood.png
+│       │   └── Pawn_Run.png
+│       └── Warrior
+│           ├── Warrior_Attack1.png
+│           ├── Warrior_Attack2.png
+│           ├── Warrior_Guard.png
+│           ├── Warrior_Idle.png
+│           └── Warrior_Run.png
+└── tree.txt
+
+73 directories, 429 files
