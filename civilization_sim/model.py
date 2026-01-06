@@ -69,8 +69,13 @@ class CivilizationModel(Model):
     def __init__(self, width=20, height=20, initial_people=20, initial_food=50, initial_predators=2, initial_trees=30, initial_stone=10, initial_iron=5, num_tribes=3, num_predator_packs=1, seed=None):
         super().__init__(seed=seed)
         self.grid = MultiGrid(width, height, True)
+        self.space = self.grid # Alias for visualization compatibility
         self.schedule = RandomActivation(self)
         self.running = True
+
+    # @property
+    # def space(self):
+    #     return self.grid
         self.num_tribes = num_tribes
         self.num_predator_packs = num_predator_packs
         # Assign fixed colors for tribes to match available asset packs
